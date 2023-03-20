@@ -4,6 +4,8 @@
 # this function should open said file and convert its contents into a json object.
 # * The json object should be returned.
 import json
+import os
+import pickle
 
 
 def read_json(path: str):
@@ -18,7 +20,12 @@ def read_json(path: str):
 #
 
 def read_all_json_files(path: str):
-    pass
+    new_list = []
+    json_file_names = [filename for filename in os.listdir(path) if filename.endswith('.json')]
+    for value in json_file_names:
+        new_list.append(read_json(path + '/' + value))
+
+    return new_list
 
 
 # ### Part C * Define a function called *write_pickle*. This function should take a file path and some data. Given
@@ -27,7 +34,7 @@ def read_all_json_files(path: str):
 #
 
 def write_pickle(path: str, some_data):
-    pass
+    pickle.dump(some_data, open(path))
 
 
 # ### Part D
