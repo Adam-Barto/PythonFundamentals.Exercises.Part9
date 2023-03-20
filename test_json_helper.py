@@ -19,8 +19,16 @@ class Test(TestCase):
         actual = 'data/super_smash_bros'
         self.assertEqual(expected, json_helper.read_all_json_files(actual))
 
-    def test_write_pickle(self):
-        self.fail()
+    def test_pickle(self):
+        test_case = [
+            ('super_smash_characters.pickle', 'data/super_smash_bros'),
+            ('atum_characters.pickle', 'data/atum')
 
-    def test_load_pickle(self):
-        self.fail()
+
+        ]
+        for (path, data) in test_case:
+            with self.subTest(f'{path},{data}'):
+                json_helper.write_pickle(path, json_helper.read_all_json_files(data))
+                actual = json_helper.load_pickle(path)
+                print(actual)
+                self.assertEqual(actual, json_helper.read_all_json_files(data))

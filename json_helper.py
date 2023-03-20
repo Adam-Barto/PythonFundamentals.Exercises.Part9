@@ -24,7 +24,6 @@ def read_all_json_files(path: str):
     json_file_names = [filename for filename in os.listdir(path) if filename.endswith('.json')]
     for value in json_file_names:
         new_list.append(read_json(path + '/' + value))
-
     return new_list
 
 
@@ -34,7 +33,7 @@ def read_all_json_files(path: str):
 #
 
 def write_pickle(path: str, some_data):
-    pickle.dump(some_data, open(path))
+    pickle.dump(some_data, open(path, 'wb'))
 
 
 # ### Part D
@@ -42,4 +41,4 @@ def write_pickle(path: str, some_data):
 # * Use this function to print the pickled data from Part C to the screen.
 
 def load_pickle(path: str):
-    pass
+    return pickle.load(open(path, 'rb'))
