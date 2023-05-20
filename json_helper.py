@@ -41,4 +41,6 @@ def write_pickle(path: str, some_data):
 # * Use this function to print the pickled data from Part C to the screen.
 
 def load_pickle(path: str):
-    return pickle.load(open(path, 'rb'))
+    with open(path, 'rb') as handler:
+        data = pickle.load(handler)
+    return data
